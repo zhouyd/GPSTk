@@ -106,6 +106,13 @@ namespace gpstk
       return true;
    }
 
+   void RinexObsStream::readRinexHeader()
+   {
+       if (!headerRead)
+       {
+           *this >> header;
+       }
+   }
 
    void RinexObsStream ::
    init()

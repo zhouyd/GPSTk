@@ -91,6 +91,7 @@ namespace gpstk
    {
    public:
 
+       OceanLoading() {};
          /** Common constructor
           *
           * @param filename  Name of BLQ file containing ocean tide
@@ -99,7 +100,7 @@ namespace gpstk
           * @warning If filename is not given, this class will look for
           * a file named "oceanloading.blq" in the current directory.
           */
-      OceanLoading(std::string filename="oceanloading.blq")
+      OceanLoading(std::string filename)
          : blqData(filename), fileData(filename) {};
 
 

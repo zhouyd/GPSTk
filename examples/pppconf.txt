@@ -66,9 +66,10 @@ printModel = FALSE
 
 
 # Antex-related variables
+antexFile = igs_01.atx
 useAntex, this variable tells if we'll use Antex files               = FALSE
-usePCPatterns, this variable activates use of Antex patterns         = FALSE
-useAzim, this variable activates use of azimuth-dependent patterns   = FALSE
+usePCPatterns, this variable activates use of Antex patterns         = TRUE
+useAzim, this variable activates use of azimuth-dependent patterns   = TRUE
 
 
 

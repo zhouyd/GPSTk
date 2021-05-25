@@ -112,6 +112,7 @@ namespace gpstk
          /// Check if the input stream is the kind of RinexObsStream
       static bool isRinexObsStream(std::istream& i);
 
+      void readRinexHeader();
    private:
       void init();
    }; // End of class 'RinexObsStream'

@@ -16,3 +16,15 @@ build*/
 
 # Coverage file results
 gcovr
+
+# vs directories
+.vs
+CMakeSettings.json
+.vscode
+
+# output directories
+out
+
+examples/*
+
+*.bak

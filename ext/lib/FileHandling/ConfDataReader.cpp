@@ -829,7 +829,10 @@ namespace gpstk
 
          // We always open configuration file as "read-only"
       FFTextStream::open(fn, std::ios::in);
-
+      if (!(*this))
+      {
+          throw -1;
+      }
       loadData();
 
       return;

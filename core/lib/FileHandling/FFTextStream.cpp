@@ -153,9 +153,36 @@ namespace gpstk
       try
       {
          std::getline(*this, line);
+
+         // catch EOF when stream exceptions are disabled
+         if ((line.size() == 0))
+         {
+             if (eof())
+             {
+                 if (expectEOF)
+                 {
+                     EndOfFile err("EOF encountered");
+                     GPSTK_THROW(err);
+                 }
+                 else
+                 {
+                     FFStreamError err("Unexpected EOF encountered");
+                     GPSTK_THROW(err);
+                 }
+             }
+             else
+             {
+                 return;
+             }
+             
+         }
+
             // Remove CR characters left over in the buffer from windows files
          while (*line.rbegin() == '\r')
-            line.erase(line.end()-1);
+         {
+             line.erase(line.end() - 1);
+         }
+            
          for (int i=0; i<line.length(); i++)
             if (!isprint(line[i]))
                {
@@ -169,20 +196,7 @@ namespace gpstk
             FFStreamError err("Line too long");
             GPSTK_THROW(err);
          }
-            // catch EOF when stream exceptions are disabled
-         if ((line.size() == 0) && eof())
-         {
-            if (expectEOF)
-            {
-               EndOfFile err("EOF encountered");
-               GPSTK_THROW(err);
-            }
-            else
-            {
-               FFStreamError err("Unexpected EOF encountered");
-               GPSTK_THROW(err);
-            }
-         }
+         
       }
       catch(std::exception &e)
       {

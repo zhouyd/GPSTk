@@ -473,7 +473,7 @@ void example9::process()
       RinexObsStream rin;
 
          // Enable exceptions
-      rin.exceptions(ios::failbit);
+      //rin.exceptions(ios::failbit);
 
          // Try to open Rinex observations file
       try
@@ -481,7 +481,7 @@ void example9::process()
 
             // Open Rinex observations file in read-only mode
          rin.open( confReader("rinexObsFile", station), std::ios::in );
-
+         rin.readRinexHeader();
       }
       catch(...)
       {
@@ -711,9 +711,7 @@ void example9::process()
          antexReader.open( confReader.getValue( "antexFile", station ) );
 
             // Get receiver antenna parameters
-         receiverAntenna =
-            antexReader.getAntenna( confReader.getValue( "antennaModel",
-                                                         station ) );
+         receiverAntenna = antexReader.getAntenna(rin.header.antType);
 
       }
 
@@ -959,6 +957,8 @@ void example9::process()
 
             // Store current epoch
          CommonTime time(gRin.header.epoch);
+
+         cout << "Processing for station: '" << station << "' at " << time << "." << endl;
 
             // Compute solid, oceanic and pole tides effects at this epoch
          Triple tides( solid.getSolidTide( time, nominalPos )  +
