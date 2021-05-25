@@ -56,6 +56,7 @@ namespace gpstk
          : FFTextStream(fn, mode)
    {
       init();
+      readRinexHeader();
    }
 
 
@@ -65,6 +66,7 @@ namespace gpstk
          : FFTextStream(fn.c_str(), mode)
    {
       init();
+      readRinexHeader();
    }
 
 
@@ -80,6 +82,7 @@ namespace gpstk
    {
       FFTextStream::open(fn, mode);
       init();
+      readRinexHeader();
    }
 
 

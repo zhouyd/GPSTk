@@ -481,7 +481,6 @@ void example9::process()
 
             // Open Rinex observations file in read-only mode
          rin.open( confReader("rinexObsFile", station), std::ios::in );
-         rin.readRinexHeader();
       }
       catch(...)
       {
